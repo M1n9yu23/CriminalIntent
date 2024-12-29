@@ -38,6 +38,7 @@ android {
 dependencies {
 
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7")
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
