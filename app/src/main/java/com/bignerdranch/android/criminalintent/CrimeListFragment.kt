@@ -57,13 +57,15 @@ class CrimeListFragment: Fragment() {
 
         private val titleTextView: TextView = itemView.findViewById(R.id.crime_title)
         private val dateTextView: TextView = itemView.findViewById(R.id.crime_date)
-        private val policeButton: Button? = itemView.findViewById(R.id.crime_police)
+        // private val policeButton: Button? = itemView.findViewById(R.id.crime_police)
 
         init {
             itemView.setOnClickListener(this)
+
+            /*
             policeButton?.setOnClickListener {
                 Toast.makeText(context, "경찰에 연락합니다!", Toast.LENGTH_SHORT).show()
-            }
+            }*/
         }
 
         override fun onClick(p0: View?) {
@@ -80,22 +82,24 @@ class CrimeListFragment: Fragment() {
 
     private inner class CrimeAdapter(var crimes: List<Crime>) : RecyclerView.Adapter<CrimeHolder>(){
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CrimeHolder {
+            /*
             val layoutId = when(viewType){
                 1 -> R.layout.list_item_crime_police
                 else -> R.layout.list_item_crime
             }
+            */
 
-            val view = layoutInflater.inflate(layoutId, parent, false)
+            val view = layoutInflater.inflate(R.layout.list_item_crime, parent, false)
             return CrimeHolder(view)
         }
 
-        override fun getItemViewType(position: Int): Int {
+        /*override fun getItemViewType(position: Int): Int {
             return if(crimes[position].requiresPolice) {
                 1
             } else {
                 0
             }
-        }
+        }*/
 
         override fun getItemCount(): Int {
             return crimes.size
