@@ -40,6 +40,7 @@ dependencies {
 
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7")
     implementation("androidx.recyclerview:recyclerview:1.3.2")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.7")
 
     // Room 의존성
     implementation("androidx.room:room-runtime:2.6.1")
