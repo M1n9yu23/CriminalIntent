@@ -91,7 +91,11 @@ class CrimeFragment: Fragment() {
                 crime.isSolved = isChecked
             }
         }
+    }
 
+    override fun onStop() {
+        super.onStop()
+        crimeDetailViewModel.saveCrime(crime)
     }
 
     private fun updateUI(){
