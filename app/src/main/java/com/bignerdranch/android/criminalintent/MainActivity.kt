@@ -1,12 +1,16 @@
 package com.bignerdranch.android.criminalintent
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import java.util.UUID
 
-class MainActivity : AppCompatActivity() {
+private const val TAG = "MainActivity"
+
+class MainActivity : AppCompatActivity(), CrimeListFragment.Callbacks {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -21,6 +25,10 @@ class MainActivity : AppCompatActivity() {
             // 프래그먼트 트랜잭션은 프래그먼트를 추가 삭제 변경 첨부 등을 하는 데 사용 됨.
             // 즉 프래그먼트를 다룰 땐 트랜잭션이 꼭 필요
         }
+    }
 
+    override fun onCrimeSelected(crimeId: UUID) {
+        val fragment = CrimeFragment()
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).addToBackStack(null).commit()
     }
 }
