@@ -3,6 +3,7 @@ package com.bignerdranch.android.criminalintent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ import androidx.fragment.app.Fragment
 import java.util.UUID
 
 private const val ARG_CRIME_ID = "crime_id"
+private const val TAG = "CrimeFragment"
 
 class CrimeFragment: Fragment() {
 
@@ -24,6 +26,9 @@ class CrimeFragment: Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         crime = Crime()
+        val crimeId: UUID = arguments?.getSerializable(ARG_CRIME_ID) as UUID
+        Log.d(TAG, "args bundle crime ID: $crimeId")
+        // 최종적으로는 데이터베이스로부터 데이터를 로드해야함.
     }
 
     override fun onCreateView(
