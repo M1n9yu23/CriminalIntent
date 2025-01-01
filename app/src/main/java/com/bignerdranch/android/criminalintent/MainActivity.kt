@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import java.util.UUID
@@ -15,6 +16,8 @@ class MainActivity : AppCompatActivity(), CrimeListFragment.Callbacks {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
 
         val currentFragment = supportFragmentManager.findFragmentById(R.id.fragment_container)
 
