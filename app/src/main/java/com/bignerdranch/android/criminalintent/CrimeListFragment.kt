@@ -48,6 +48,7 @@ class CrimeListFragment: Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        @Suppress("DEPRECATION")
         setHasOptionsMenu(true)
     }
 
@@ -81,7 +82,7 @@ class CrimeListFragment: Fragment() {
         super.onDetach()
         callbacks = null
     }
-
+    @Suppress("DEPRECATION")
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.fragment_crime_list, menu)
@@ -95,7 +96,10 @@ class CrimeListFragment: Fragment() {
                 callbacks?.onCrimeSelected(crime.id)
                 true
             }
-            else -> return super.onOptionsItemSelected(item)
+            else -> {
+                @Suppress("DEPRECATION")
+                return super.onOptionsItemSelected(item)
+            }
         }
     }
 

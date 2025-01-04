@@ -55,6 +55,7 @@ class CrimeFragment: Fragment(), DatePickerFragment.Callbacks {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         crime = Crime()
+        @Suppress("DEPRECATION")
         val crimeId: UUID = arguments?.getSerializable(ARG_CRIME_ID) as UUID
         crimeDetailViewModel.loadCrime(crimeId)
     }
@@ -117,6 +118,7 @@ class CrimeFragment: Fragment(), DatePickerFragment.Callbacks {
 
         dateButton.setOnClickListener {
             DatePickerFragment.newInstance(crime.date).apply {
+                @Suppress("DEPRECATION")
                 setTargetFragment(this@CrimeFragment, REQUEST_DATE)
                 show(this@CrimeFragment.getParentFragmentManager(), DIALOG_DATE)
             }
@@ -139,6 +141,7 @@ class CrimeFragment: Fragment(), DatePickerFragment.Callbacks {
             val pickContactIntent = Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI)
 
             setOnClickListener {
+                @Suppress("DEPRECATION")
                 startActivityForResult(pickContactIntent, REQUEST_CONTACT)
             }
             // 연락처 앱이 없을 때 비활성화

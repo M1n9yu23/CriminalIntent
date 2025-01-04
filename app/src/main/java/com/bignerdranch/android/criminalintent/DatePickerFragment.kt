@@ -24,11 +24,12 @@ class DatePickerFragment: DialogFragment() {
                 _: DatePicker, year: Int, month: Int, day: Int ->
             val resultDate: Date = GregorianCalendar(year, month, day).time
 
+            @Suppress("DEPRECATION")
             targetFragment?.let { fragment ->
                 (fragment as Callbacks).onDateSelected(resultDate)
             }
         }
-
+        @Suppress("DEPRECATION")
         val date = arguments?.getSerializable(ARG_DATE) as Date
         val calender = Calendar.getInstance()
         calender.time = date // date 객체를 calendar 객체로 참조
