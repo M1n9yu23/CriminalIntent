@@ -11,6 +11,7 @@ import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
 import android.text.format.DateFormat
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -144,12 +145,13 @@ class CrimeFragment: Fragment(), DatePickerFragment.Callbacks {
                 @Suppress("DEPRECATION")
                 startActivityForResult(pickContactIntent, REQUEST_CONTACT)
             }
-            // 연락처 앱이 없을 때 비활성화
-            val packageManager: PackageManager = requireActivity().packageManager
-            val resolvedActivity: ResolveInfo? = packageManager.resolveActivity(pickContactIntent, PackageManager.MATCH_DEFAULT_ONLY)
-            if(resolvedActivity == null){
-                isEnabled = false
-            }
+            // 연락처 앱이 없을 때 비활성화 (연락처 앱이 있는데 비활성화가 돼서 주석처리)
+//            val packageManager: PackageManager = requireActivity().packageManager
+//            val resolvedActivity: ResolveInfo? = packageManager.resolveActivity(pickContactIntent, PackageManager.MATCH_DEFAULT_ONLY)
+//            Log.d("CrimeFragment", "Resolved activity for contact intent: $resolvedActivity")
+//            if(resolvedActivity == null){
+//                isEnabled = false
+//            }
         }
 
         photoButton.apply {
