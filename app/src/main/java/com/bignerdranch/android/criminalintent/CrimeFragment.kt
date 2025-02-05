@@ -20,6 +20,7 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -35,6 +36,7 @@ private const val REQUEST_DATE = 0
 private const val DATE_FORMAT = "yyyy년 M월 d일 H시 m분, E요일"
 private const val REQUEST_CONTACT = 1
 private const val REQUEST_PHOTO = 2
+private const val REQUEST_GALLERY = 3  // 갤러리에서 이미지를 선택할 때 사용
 
 class CrimeFragment: Fragment(), DatePickerFragment.Callbacks {
 
@@ -154,27 +156,65 @@ class CrimeFragment: Fragment(), DatePickerFragment.Callbacks {
 //            }
         }
 
-        photoButton.apply {
-            val packageManager: PackageManager = requireActivity().packageManager
+        photoButton.setOnClickListener {
+            val options = arrayOf("카메라", "갤러리")
+            AlertDialog.Builder(requireContext())
+                .setTitle("사진 선택")
+                .setItems(options) { _, which ->
+                    when (which) {
+                        0 -> openCamera()  // 카메라 선택
+                        1 -> openGallery() // 갤러리 선택
+                    }
+                }
+                .show()
+        }
 
-            val captureImage = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+
+//        photoButton.apply {
+//            val packageManager: PackageManager = requireActivity().packageManager
+//
+//            val captureImage = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
 //            val resolvedActivity: ResolveInfo? = packageManager.resolveActivity(captureImage, PackageManager.MATCH_DEFAULT_ONLY)
 //            if(resolvedActivity == null){
 //                isEnabled = false
+//          }
+//
+//            setOnClickListener{
+//                captureImage.putExtra(MediaStore.EXTRA_OUTPUT, photoUri)
+//
+//                val cameraActivities: List<ResolveInfo> = packageManager.queryIntentActivities(captureImage, PackageManager.MATCH_DEFAULT_ONLY)
+//
+//                for(cameraActivity in cameraActivities) {
+//                    requireActivity().grantUriPermission(cameraActivity.activityInfo.packageName, photoUri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
+//                }
+//
+//                startActivityForResult(captureImage, REQUEST_PHOTO)
 //            }
+//        }
+    }
 
-            setOnClickListener{
-                captureImage.putExtra(MediaStore.EXTRA_OUTPUT, photoUri)
+    private fun openGallery() {
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        startActivityForResult(intent, REQUEST_GALLERY)
+    }
 
-                val cameraActivities: List<ResolveInfo> = packageManager.queryIntentActivities(captureImage, PackageManager.MATCH_DEFAULT_ONLY)
+    private fun openCamera() {
+        val captureImage = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        captureImage.putExtra(MediaStore.EXTRA_OUTPUT, photoUri)
 
-                for(cameraActivity in cameraActivities) {
-                    requireActivity().grantUriPermission(cameraActivity.activityInfo.packageName, photoUri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
-                }
+        val cameraActivities: List<ResolveInfo> = requireActivity().packageManager.queryIntentActivities(
+            captureImage, PackageManager.MATCH_DEFAULT_ONLY
+        )
 
-                startActivityForResult(captureImage, REQUEST_PHOTO)
-            }
+        for (cameraActivity in cameraActivities) {
+            requireActivity().grantUriPermission(
+                cameraActivity.activityInfo.packageName,
+                photoUri,
+                Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+            )
         }
+
+        startActivityForResult(captureImage, REQUEST_PHOTO)
     }
 
     override fun onStop() {
@@ -247,6 +287,14 @@ class CrimeFragment: Fragment(), DatePickerFragment.Callbacks {
             requestCode == REQUEST_PHOTO -> {
                 requireActivity().revokeUriPermission(photoUri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
                 updatePhotoView()
+            }
+
+            requestCode == REQUEST_GALLERY && data != null -> {
+                val selectedImageUri: Uri? = data.data
+                selectedImageUri?.let {
+                    photoView.setImageURI(it)  // 선택한 이미지를 ImageView에 설정
+                    photoView.contentDescription = getString(R.string.crime_photo_image_description)
+                }
             }
         }
     }
