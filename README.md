@@ -27,12 +27,14 @@ DialogFragment: 사용자와의 상호작용을 위한 다이얼로그 표시. (
 
 접근성 향상: TalkBack을 사용하여 앱의 접근성을 강화할 수 있음. 이런 접근성은 대등한 사용자 경험을 만들어야 한다.
 
-<h2 id="0">🖥️ Result</h2>
-
-<p float="left">  
-
-[//]: # (<img width="40%" src="https://github.com/user-attachments/assets/18168164-82c8-47fe-9766-b11c451776c0">)
+[//]: # (<h2 id="0">🖥️ Result</h2>)
 
 [//]: # ()
-[//]: # (<img width="40%" src="https://github.com/user-attachments/assets/8ca2e7c8-4df1-44cf-9090-e9bd416d29a0">)
-</p>
+[//]: # (<p float="left">  )
+
+[//]: # ()
+[//]: # ([//]: # &#40;<img width="40%" src="https://github.com/user-attachments/assets/18168164-82c8-47fe-9766-b11c451776c0">&#41;)
+[//]: # ()
+[//]: # ([//]: # &#40;&#41;)
+[//]: # ([//]: # &#40;<img width="40%" src="https://github.com/user-attachments/assets/8ca2e7c8-4df1-44cf-9090-e9bd416d29a0">&#41;)
+[//]: # (</p>)
