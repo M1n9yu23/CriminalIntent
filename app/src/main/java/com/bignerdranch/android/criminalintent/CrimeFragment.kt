@@ -158,10 +158,10 @@ class CrimeFragment: Fragment(), DatePickerFragment.Callbacks {
             val packageManager: PackageManager = requireActivity().packageManager
 
             val captureImage = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            val resolvedActivity: ResolveInfo? = packageManager.resolveActivity(captureImage, PackageManager.MATCH_DEFAULT_ONLY)
-            if(resolvedActivity == null){
-                isEnabled = false
-            }
+//            val resolvedActivity: ResolveInfo? = packageManager.resolveActivity(captureImage, PackageManager.MATCH_DEFAULT_ONLY)
+//            if(resolvedActivity == null){
+//                isEnabled = false
+//            }
 
             setOnClickListener{
                 captureImage.putExtra(MediaStore.EXTRA_OUTPUT, photoUri)
