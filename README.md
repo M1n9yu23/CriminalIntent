@@ -30,7 +30,9 @@ DialogFragment: 사용자와의 상호작용을 위한 다이얼로그 표시. (
 <h2 id="0">🖥️ Result</h2>
 
 <p float="left">  
-<img width="40%" src="https://github.com/user-attachments/assets/18168164-82c8-47fe-9766-b11c451776c0">
 
-<img width="40%" src="https://github.com/user-attachments/assets/8ca2e7c8-4df1-44cf-9090-e9bd416d29a0">
+[//]: # (<img width="40%" src="https://github.com/user-attachments/assets/18168164-82c8-47fe-9766-b11c451776c0">)
+
+[//]: # ()
+[//]: # (<img width="40%" src="https://github.com/user-attachments/assets/8ca2e7c8-4df1-44cf-9090-e9bd416d29a0">)
 </p>
